@@ -185,4 +185,31 @@ public class TemperatureSeriesAnalysisTest {
     public void testcheckInput(){
         emptyArr.checkInput();
     }
+
+    @Test
+    public void testTempSummaryStatistics(){
+        double expectedAvgTemp = 30;
+        double expectedDevTemp = 10;
+        double expectedMinTemp = -5;
+        double expectedMaxTemp = 100;
+        TempSummaryStatistics summaryStatistics = new TempSummaryStatistics(30,
+                10, -5, 100);
+        assertEquals(expectedAvgTemp, summaryStatistics.getAvgTemp(), 0.0);
+        assertEquals(expectedDevTemp, summaryStatistics.getDevTemp(), 0.0);
+        assertEquals(expectedMinTemp, summaryStatistics.getMinTemp(), 0.0);
+        assertEquals(expectedMaxTemp, summaryStatistics.getMaxTemp(), 0.0);
+    }
+    @Test
+    public void testSummaryStatisticsClass() {
+        TempSummaryStatistics summaryStatistics = new TempSummaryStatistics(tempArr.average(),
+                tempArr.deviation(), tempArr.min(), tempArr.max());
+        assertEquals(tempArr.average(), summaryStatistics.getAvgTemp(), 0.1);
+        assertEquals(tempArr.deviation(), summaryStatistics.getDevTemp(), 0.1);
+        assertEquals(tempArr.min(), summaryStatistics.getMinTemp(), 0.1);
+        assertEquals(tempArr.max(), summaryStatistics.getMaxTemp(), 0.1);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void testTempSummaryStatisticsWithEmptyArray() {
+        emptyArr.summaryStatistics();
+    }
 }

@@ -88,7 +88,10 @@ public class TemperatureSeriesAnalysis {
             }
         }
         double[] result = new double[res.currentTempnum];
-        System.arraycopy(res.temperaturesArray, 0, result, 0, res.currentTempnum);
+        System.arraycopy(res.temperaturesArray,
+                0, result,
+                0,
+                res.currentTempnum);
         return result;
     }
 
@@ -100,7 +103,10 @@ public class TemperatureSeriesAnalysis {
             }
         }
         double[] result = new double[res.currentTempnum];
-        System.arraycopy(res.temperaturesArray, 0, result, 0, res.currentTempnum);
+        System.arraycopy(res.temperaturesArray,
+                0, result,
+                0,
+                res.currentTempnum);
         return result;
     }
 
@@ -125,7 +131,10 @@ public class TemperatureSeriesAnalysis {
                 currentTempnum++;
             } else {
                 double[] newArray = new double[currentCapacity * 2];
-                System.arraycopy(temperaturesArray, 0, newArray, 0, currentCapacity);
+                System.arraycopy(temperaturesArray,
+                        0, newArray,
+                        0,
+                        currentCapacity);
                 currentCapacity *= 2;
                 temperaturesArray = newArray;
                 temperaturesArray[currentTempnum] = temp;
