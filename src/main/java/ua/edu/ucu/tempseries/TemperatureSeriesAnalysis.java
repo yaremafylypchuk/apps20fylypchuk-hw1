@@ -4,9 +4,10 @@ import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
     static int Mintemp = -273;
-    double [] temperaturesArray;
+    double[] temperaturesArray;
     int currentTempnum;
     int currentCapacity;
+
     public TemperatureSeriesAnalysis() {
         temperaturesArray = new double[1];
         currentCapacity = 1;
@@ -21,10 +22,10 @@ public class TemperatureSeriesAnalysis {
     public double average() {
         checkInput();
         double avarage = 0;
-        for (int i = 0; i<currentTempnum; i++){
+        for (int i = 0; i < currentTempnum; i++) {
             avarage += temperaturesArray[i];
         }
-        avarage = avarage/currentTempnum;
+        avarage = avarage / currentTempnum;
         return avarage;
     }
 
@@ -32,7 +33,7 @@ public class TemperatureSeriesAnalysis {
         checkInput();
         double deviation = 0;
         double average = average();
-        for (int i = 0; i < currentTempnum; i++){
+        for (int i = 0; i < currentTempnum; i++) {
             deviation += Math.pow(Math.abs(temperaturesArray[i] - average), 2);
         }
 
@@ -43,8 +44,8 @@ public class TemperatureSeriesAnalysis {
     public double min() {
         checkInput();
         double min = temperaturesArray[0];
-        for (int i = 0; i < currentTempnum; i ++){
-            if (min > temperaturesArray[i]){
+        for (int i = 0; i < currentTempnum; i++) {
+            if (min > temperaturesArray[i]) {
                 min = temperaturesArray[i];
             }
         }
@@ -54,8 +55,8 @@ public class TemperatureSeriesAnalysis {
     public double max() {
         checkInput();
         double max = temperaturesArray[0];
-        for (int i = 0; i < currentTempnum; i ++){
-            if (max < temperaturesArray[i]){
+        for (int i = 0; i < currentTempnum; i++) {
+            if (max < temperaturesArray[i]) {
                 max = temperaturesArray[i];
             }
         }
@@ -70,8 +71,8 @@ public class TemperatureSeriesAnalysis {
         checkInput();
         double curClosest = temperaturesArray[0];
         double distance = Math.abs(curClosest - tempValue);
-        for (int i = 0; i < currentTempnum; i ++){
-            if (distance > Math.abs(temperaturesArray[i] - tempValue)){
+        for (int i = 0; i < currentTempnum; i++) {
+            if (distance > Math.abs(temperaturesArray[i] - tempValue)) {
                 curClosest = temperaturesArray[i];
                 distance = Math.abs(curClosest - tempValue);
             }
@@ -81,24 +82,24 @@ public class TemperatureSeriesAnalysis {
 
     public double[] findTempsLessThen(double tempValue) {
         TemperatureSeriesAnalysis res = new TemperatureSeriesAnalysis();
-        for (int i =0; i < currentTempnum; i++){
-            if (temperaturesArray[i] < tempValue){
+        for (int i = 0; i < currentTempnum; i++) {
+            if (temperaturesArray[i] < tempValue) {
                 res.addTemps(temperaturesArray[i]);
             }
         }
-        double [] result = new double[res.currentTempnum];
+        double[] result = new double[res.currentTempnum];
         System.arraycopy(res.temperaturesArray, 0, result, 0, res.currentTempnum);
         return result;
     }
 
     public double[] findTempsGreaterThen(double tempValue) {
         TemperatureSeriesAnalysis res = new TemperatureSeriesAnalysis();
-        for (int i =0; i < currentTempnum; i++){
-            if (temperaturesArray[i] > tempValue){
+        for (int i = 0; i < currentTempnum; i++) {
+            if (temperaturesArray[i] > tempValue) {
                 res.addTemps(temperaturesArray[i]);
             }
         }
-        double [] result = new double[res.currentTempnum];
+        double[] result = new double[res.currentTempnum];
         System.arraycopy(res.temperaturesArray, 0, result, 0, res.currentTempnum);
         return result;
     }
@@ -107,27 +108,28 @@ public class TemperatureSeriesAnalysis {
         checkInput();
         return new TempSummaryStatistics(average(), deviation(), min(), max());
     }
-    public void checkInput(){
-        if (currentTempnum == 0){
-            throw new InputMismatchException();
+
+    public void checkInput() {
+        if (currentTempnum == 0) {
+            throw new IllegalArgumentException();
         }
     }
 
     public int addTemps(double... temps) {
-        for (double temp: temps){
-            if (temp < Mintemp){
+        for (double temp : temps) {
+            if (temp < Mintemp) {
                 throw new InputMismatchException();
             }
-            if (currentTempnum < currentCapacity){
+            if (currentTempnum < currentCapacity) {
                 temperaturesArray[currentTempnum] = temp;
-                currentTempnum ++;}
-            else{
+                currentTempnum++;
+            } else {
                 double[] newArray = new double[currentCapacity * 2];
                 System.arraycopy(temperaturesArray, 0, newArray, 0, currentCapacity);
-                currentCapacity*=2;
+                currentCapacity *= 2;
                 temperaturesArray = newArray;
                 temperaturesArray[currentTempnum] = temp;
-                currentTempnum ++;
+                currentTempnum++;
             }
         }
         return currentTempnum;
