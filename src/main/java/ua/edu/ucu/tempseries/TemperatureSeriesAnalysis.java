@@ -34,7 +34,8 @@ public class TemperatureSeriesAnalysis {
         double deviation = 0;
         double average = average();
         for (int i = 0; i < currentTempnum; i++) {
-            deviation += Math.abs(temperaturesArray[i] - average) * Math.abs(temperaturesArray[i] - average);
+            deviation += Math.abs(temperaturesArray[i] - average)
+                    * Math.abs(temperaturesArray[i] - average);
         }
 
         deviation /= currentTempnum;
