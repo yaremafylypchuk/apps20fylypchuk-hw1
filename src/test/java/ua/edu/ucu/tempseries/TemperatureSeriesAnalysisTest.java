@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.Ignore;
 
+import java.util.InputMismatchException;
+
 public class TemperatureSeriesAnalysisTest {
     private TemperatureSeriesAnalysis emptyArr;
     private TemperatureSeriesAnalysis oneElArr;
@@ -211,5 +213,9 @@ public class TemperatureSeriesAnalysisTest {
     @Test(expected = IllegalArgumentException.class)
     public void testTempSummaryStatisticsWithEmptyArray() {
         emptyArr.summaryStatistics();
+    }
+    @Test(expected = InputMismatchException.class)
+    public void testAddtempsSmall(){
+        oneElArr.addTemps(-274);
     }
 }

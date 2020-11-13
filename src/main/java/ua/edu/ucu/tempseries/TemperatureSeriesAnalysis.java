@@ -3,10 +3,10 @@ package ua.edu.ucu.tempseries;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
-    static int Mintemp = -273;
-    double[] temperaturesArray;
-    int currentTempnum;
-    int currentCapacity;
+    private final static int MINTEMP = -273;
+    private double[] temperaturesArray;
+    private int currentTempnum;
+    private int currentCapacity;
 
     public TemperatureSeriesAnalysis() {
         temperaturesArray = new double[1];
@@ -123,7 +123,7 @@ public class TemperatureSeriesAnalysis {
 
     public int addTemps(double... temps) {
         for (double temp : temps) {
-            if (temp < Mintemp) {
+            if (temp < MINTEMP) {
                 throw new InputMismatchException();
             }
             if (currentTempnum < currentCapacity) {
