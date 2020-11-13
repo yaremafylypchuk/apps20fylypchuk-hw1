@@ -16,8 +16,6 @@ public class TemperatureSeriesAnalysis {
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         this();
         addTemps(temperatureSeries);
-//        System.out.println(currentTempnum);
-//        System.out.println(currentCapacity);
     }
 
     public double average() {
