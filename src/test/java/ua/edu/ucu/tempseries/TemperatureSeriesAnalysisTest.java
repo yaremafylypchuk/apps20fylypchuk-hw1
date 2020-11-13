@@ -190,16 +190,15 @@ public class TemperatureSeriesAnalysisTest {
 
     @Test
     public void testTempSummaryStatistics(){
-        double expectedAvgTemp = 30;
-        double expectedDevTemp = 10;
-        double expectedMinTemp = -5;
-        double expectedMaxTemp = 100;
-        TempSummaryStatistics summaryStatistics = new TempSummaryStatistics(30,
-                10, -5, 100);
-        assertEquals(expectedAvgTemp, summaryStatistics.getAvgTemp(), 0.0);
-        assertEquals(expectedDevTemp, summaryStatistics.getDevTemp(), 0.0);
-        assertEquals(expectedMinTemp, summaryStatistics.getMinTemp(), 0.0);
-        assertEquals(expectedMaxTemp, summaryStatistics.getMaxTemp(), 0.0);
+        tempArr.summaryStatistics();
+        double expectedAvgTemp = 12.2;
+        double expectedDevTemp = 1514.56;
+        double expectedMinTemp = -43.0;
+        double expectedMaxTemp = 77.0;
+        assertEquals(expectedAvgTemp, tempArr.summaryStatistics().getAvgTemp(), 0.0);
+        assertEquals(expectedDevTemp, tempArr.summaryStatistics().getDevTemp(), 0.0);
+        assertEquals(expectedMinTemp, tempArr.summaryStatistics().getMinTemp(), 0.0);
+        assertEquals(expectedMaxTemp, tempArr.summaryStatistics().getMaxTemp(), 0.0);
     }
     @Test
     public void testSummaryStatisticsClass() {

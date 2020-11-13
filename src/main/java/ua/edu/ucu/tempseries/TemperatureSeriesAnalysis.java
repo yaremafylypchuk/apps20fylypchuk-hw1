@@ -3,7 +3,7 @@ package ua.edu.ucu.tempseries;
 import java.util.InputMismatchException;
 
 public class TemperatureSeriesAnalysis {
-    private final static int MINTEMP = -273;
+    private static final int MINTEMP = -273;
     private double[] temperaturesArray;
     private int currentTempnum;
     private int currentCapacity;
@@ -34,7 +34,7 @@ public class TemperatureSeriesAnalysis {
         double deviation = 0;
         double average = average();
         for (int i = 0; i < currentTempnum; i++) {
-            deviation += Math.pow(Math.abs(temperaturesArray[i] - average), 2);
+            deviation += Math.abs(temperaturesArray[i] - average) * Math.abs(temperaturesArray[i] - average);
         }
 
         deviation /= currentTempnum;
